@@ -7,9 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variables CSS pour les couleurs sombres */
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #06b6d4;
+            --border-color: #475569;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+        }
+
         .section-title {
             position: relative;
             padding-bottom: 8px;
+            color: var(--text-primary);
         }
         .section-title::after {
             content: "";
@@ -17,64 +36,187 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #004f90 0%, rgba(0,79,144,0.2) 100%);
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 2px;
         }
+        
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 79, 144, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2);
+            border-color: var(--accent-primary);
         }
+        
         .timeline-item::before {
             content: "";
             position: absolute;
             left: -24px;
             top: 8px;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background-color: #004f90;
-            border: 2px solid white;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border: 3px solid var(--bg-secondary);
             z-index: 1;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
+        
         .timeline::before {
             content: "";
             position: absolute;
             left: 6px;
             top: 0;
             height: 100%;
-            width: 2px;
-            background-color: #e2e8f0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Header gradient amélioré */
+        .header-gradient {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--accent-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        /* Skill tags avec dégradé */
+        .skill-tag {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+            border: 1px solid var(--accent-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Contact section gradient */
+        .contact-gradient {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--accent-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain2" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain2)"/></svg>');
+            opacity: 0.2;
+        }
+
+        /* Animation pour les icônes */
+        .icon-animate {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-animate:hover {
+            transform: rotate(360deg) scale(1.2);
+            color: var(--accent-tertiary);
+        }
+
+        /* Effet de brillance sur l'image de profil */
+        .profile-image {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+        
+        .profile-image:hover::before {
+            left: 100%;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="font-sans">
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4 md:px-8 lg:px-16">
+    <header class="header-gradient text-white py-12 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-6 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-2">Hazem Jday</h1>
-                    <p class="text-lg md:text-xl opacity-90">Étudiant en Informatique | software engineer</p>
+                <div class="text-center md:text-left mb-6 md:mb-0 flex items-center">
+                    <div class="mr-6 w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg profile-image">
+                        <img src="pdp.jpg" alt="Hazem Jday" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-2">Hazem Jday</h1>
+                        <p class="text-lg md:text-xl opacity-90">Étudiant en Informatique | software engineer</p>
+                    </div>
                 </div>
                 <div class="flex flex-col space-y-2">
                     <div class="flex items-center">
-                        <i class="fas fa-map-marker-alt mr-2 text-blue-300"></i>
+                        <i class="fas fa-map-marker-alt mr-2 text-blue-300 icon-animate"></i>
                         <span>Sousse, Tunisie</span>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-envelope mr-2 text-blue-300"></i>
+                        <i class="fas fa-envelope mr-2 text-blue-300 icon-animate"></i>
                         <a href="mailto:hazem.jday@ensi-uma.tn" class="hover:underline">hazem.jday@ensi-uma.tn</a>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-phone mr-2 text-blue-300"></i>
+                        <i class="fas fa-phone mr-2 text-blue-300 icon-animate"></i>
                         <span>+216 55187295</span>
                     </div>
                     <div class="flex items-center">
-                        <i class="fab fa-linkedin-in mr-2 text-blue-300"></i>
+                        <i class="fab fa-linkedin-in mr-2 text-blue-300 icon-animate"></i>
                         <a href="https://www.linkedin.com/in/jday-hazem-80b72b18b/" target="_blank" class="hover:underline">Jday Hazem</a>
                     </div>
                     <div class="flex items-center">
-                        <i class="fab fa-github mr-2 text-blue-300"></i>
+                        <i class="fab fa-github mr-2 text-blue-300 icon-animate"></i>
                         <a href="https://github.com/hazemjday" target="_blank" class="hover:underline">hazemjday</a>
                     </div>
                 </div>
@@ -86,8 +228,8 @@
     <main class="container mx-auto py-8 px-4 md:px-8 lg:px-16">
         <!-- About Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">À Propos</h2>
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-3xl font-bold mb-6 section-title">À Propos</h2>
+            <div class="project-card rounded-lg shadow-md p-6">
                 <p class="text-lg mb-4">
                     Étudiant en informatique à l'École Nationale des Sciences de l'Informatique (ENSI), passionné par le développement logiciel, l'intelligence artificielle et les systèmes embarqués.
                 </p>
@@ -99,16 +241,16 @@
 
         <!-- Education Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">Formation</h2>
+            <h2 class="text-3xl font-bold mb-6 section-title">Formation</h2>
             <div class="relative timeline pl-8">
                 <!-- ENSI -->
                 <div class="mb-8 relative timeline-item">
-                    <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="project-card rounded-lg shadow-md p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">École Nationale des Sciences de l'Informatique (ENSI)</h3>
-                            <span class="text-blue-600 font-medium">Sept 2022 – Juin 2025</span>
+                            <h3 class="text-xl font-bold text-blue-300">École Nationale des Sciences de l'Informatique (ENSI)</h3>
+                            <span class="text-blue-400 font-medium">Sept 2022 – Juin 2025</span>
                         </div>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-1 text-gray-300">
                             <li>Étude des fondements de l'informatique</li>
                             <li>Spécialisation en intelligence artificielle et systèmes distribués</li>
                         </ul>
@@ -117,12 +259,12 @@
                 
                 <!-- IPEIM -->
                 <div class="mb-8 relative timeline-item">
-                    <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="project-card rounded-lg shadow-md p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Institut Préparatoire aux Études d'Ingénieur de Monastir (IPEIM)</h3>
-                            <span class="text-blue-600 font-medium">Sept 2019 – Juin 2022</span>
+                            <h3 class="text-xl font-bold text-blue-300">Institut Préparatoire aux Études d'Ingénieur de Monastir (IPEIM)</h3>
+                            <span class="text-blue-400 font-medium">Sept 2019 – Juin 2022</span>
                         </div>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-1 text-gray-300">
                             <li>Diplôme en Mathématiques et Physique (filière MP)</li>
                             <li>Formation intensive en sciences fondamentales</li>
                         </ul>
@@ -131,12 +273,12 @@
                 
                 <!-- Lycée Essalem -->
                 <div class="mb-8 relative timeline-item">
-                    <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="project-card rounded-lg shadow-md p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Lycée Essalem, Sousse</h3>
-                            <span class="text-blue-600 font-medium">Sept 2018 – Juin 2019</span>
+                            <h3 class="text-xl font-bold text-blue-300">Lycée Essalem, Sousse</h3>
+                            <span class="text-blue-400 font-medium">Sept 2018 – Juin 2019</span>
                         </div>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-1 text-gray-300">
                             <li>Baccalauréat Mathématiques — Mention Bien</li>
                         </ul>
                     </div>
@@ -146,26 +288,26 @@
 
         <!-- Experience Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">Expérience Professionnelle</h2>
+            <h2 class="text-3xl font-bold mb-6 section-title">Expérience Professionnelle</h2>
             <div class="grid gap-6">
                 <!-- Tritux Group -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Tritux Group - Stage PFE</h3>
-                            <span class="text-blue-600 font-medium">Fév 2025 – Juin 2025 | Tunis, Tunisie</span>
+                            <h3 class="text-xl font-bold text-blue-300">Tritux Group - Stage PFE</h3>
+                            <span class="text-blue-400 font-medium">Fév 2025 – Juin 2025 | Tunis, Tunisie</span>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Machine Learning</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Deep Learning</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Cassandra</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Apache Airflow</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Pyspark</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Docker</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Machine Learning</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Deep Learning</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Cassandra</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Apache Airflow</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Pyspark</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Docker</span>
                             </div>
                         </div>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-2 text-gray-300">
                             <li>Création de pipelines orchestrés par Airflow pour la détection d'anomalies dans les logs de messages du gateway SMGS, la prédiction de son comportement futur, et la visualisation des données.</li>
                             <li>Monitoring de la base de données Cassandra via Prometheus, amélioration de sa sécurité et de sa scalabilité, et dockerisation complète du projet.</li>
                             <li>Développement d'une interface client permettant la visualisation et l'analyse des données, ainsi que la gestion des réclamations.</li>
@@ -174,20 +316,20 @@
                 </div>
                 
                 <!-- Leanios -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Leanios - Stage d'été</h3>
-                            <span class="text-blue-600 font-medium">Juillet 2024 – Aout 2024 | Sousse, Tunisie</span>
+                            <h3 class="text-xl font-bold text-blue-300">Leanios - Stage d'été</h3>
+                            <span class="text-blue-400 font-medium">Juillet 2024 – Aout 2024 | Sousse, Tunisie</span>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Ruby on Rails</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">ESP32</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Capteurs</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Ruby on Rails</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">ESP32</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Capteurs</span>
                             </div>
                         </div>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-2 text-gray-300">
                             <li>Traitement des données du capteur au sein de la plateforme Leanios.</li>
                             <li>Développement d'un site web pour la location de maisons.</li>
                         </ul>
@@ -195,21 +337,21 @@
                 </div>
                 
                 <!-- Imbus -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Imbus - Stage d'été</h3>
-                            <span class="text-blue-600 font-medium">Juillet 2023 – Aout 2023 | Sousse, Tunisie</span>
+                            <h3 class="text-xl font-bold text-blue-300">Imbus - Stage d'été</h3>
+                            <span class="text-blue-400 font-medium">Juillet 2023 – Aout 2023 | Sousse, Tunisie</span>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">React</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Express.js</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Firebase</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">MongoDB</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">React</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Express.js</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Firebase</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">MongoDB</span>
                             </div>
                         </div>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <ul class="list-disc pl-5 space-y-2 text-gray-300">
                             <li>Développement d'un site web interactif affichant en temps réel les valeurs de CO2 et de température issues de capteurs.</li>
                         </ul>
                     </div>
@@ -219,80 +361,80 @@
 
         <!-- Skills Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">Compétences Techniques</h2>
+            <h2 class="text-3xl font-bold mb-6 section-title">Compétences Techniques</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Languages -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-code mr-2 text-blue-600"></i> Langages
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-code mr-2 text-blue-400 icon-animate"></i> Langages
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">C++</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Java</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Python</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">C++</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Java</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Python</span>
                     </div>
                 </div>
                 
                 <!-- Frameworks -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-cubes mr-2 text-blue-600"></i> Frameworks
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-cubes mr-2 text-blue-400 icon-animate"></i> Frameworks
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Flask</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">React</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Spring Boot</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Flask</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">React</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Spring Boot</span>
                     </div>
                 </div>
                 
                 <!-- IoT -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-microchip mr-2 text-blue-600"></i> IoT
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-microchip mr-2 text-blue-400 icon-animate"></i> IoT
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Arduino</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">ESP32</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">MQTT</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Arduino</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">ESP32</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">MQTT</span>
                     </div>
                 </div>
                 
                 <!-- AI/ML -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-brain mr-2 text-blue-600"></i> Intelligence Artificielle
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-brain mr-2 text-blue-400 icon-animate"></i> Intelligence Artificielle
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Machine Learning</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Deep Learning</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">NLP</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">LLM</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Machine Learning</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Deep Learning</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">NLP</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">LLM</span>
                     </div>
                 </div>
                 
                 <!-- Tools -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-tools mr-2 text-blue-600"></i> Outils
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-tools mr-2 text-blue-400 icon-animate"></i> Outils
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Docker</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Firebase</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Prometheus</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Grafana</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Airflow</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Docker</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Firebase</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Prometheus</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Grafana</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Airflow</span>
                     </div>
                 </div>
                 
                 <!-- Libraries -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                        <i class="fas fa-book mr-2 text-blue-600"></i> Bibliothèques
+                <div class="project-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center">
+                        <i class="fas fa-book mr-2 text-blue-400 icon-animate"></i> Bibliothèques
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">HuggingFace</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">PyTorch</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Scikit-learn</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">HuggingFace</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">PyTorch</span>
+                        <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Scikit-learn</span>
                     </div>
                 </div>
             </div>
@@ -300,93 +442,93 @@
 
         <!-- Projects Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">Projets</h2>
+            <h2 class="text-3xl font-bold mb-6 section-title">Projets</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Chatbot RAG -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Chatbot multi-agent RAG</h3>
-                            <a href="https://github.com/hazemjday/MultiAgent_RAG_SYSTEM" target="_blank" class="text-blue-600 hover:text-blue-800">
+                            <h3 class="text-xl font-bold text-blue-300">Chatbot multi-agent RAG</h3>
+                            <a href="https://github.com/hazemjday/MultiAgent_RAG_SYSTEM" target="_blank" class="text-blue-400 hover:text-blue-300 icon-animate">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">LangGraph</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">BERT</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">RAG</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">LLM</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">LangGraph</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">BERT</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">RAG</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">LLM</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
+                        <p class="text-gray-300">
                             Création d'un chatbot intelligent à agents multiples avec LangGraph, capable d'extraire des articles Wikipedia, générer des rapports et répondre aux questions via RAG et BERT.
                         </p>
                     </div>
                 </div>
                 
                 <!-- Sentiment Analysis -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Analyse des sentiments Reddit – NLP</h3>
-                            <a href="https://github.com/hazemjday/NLP_SENTIMENT_ANALYSIS" target="_blank" class="text-blue-600 hover:text-blue-800">
+                            <h3 class="text-xl font-bold text-blue-300">Analyse des sentiments Reddit – NLP</h3>
+                            <a href="https://github.com/hazemjday/NLP_SENTIMENT_ANALYSIS" target="_blank" class="text-blue-400 hover:text-blue-300 icon-animate">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">BERT</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">DistilBERT</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Fine-tuning</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">BERT</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">DistilBERT</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Fine-tuning</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
+                        <p class="text-gray-300">
                             Développement d'un classifieur de sentiments à partir de messages Reddit, en comparant trois approches : BERT avec MLP, DistilBERT, et BERT fine-tuné.
                         </p>
                     </div>
                 </div>
                 
                 <!-- Vaccination Management -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Gestion de vaccination canine – CNVZ</h3>
-                            <a href="https://github.com/hazemjday/VeterinaireSpring" target="_blank" class="text-blue-600 hover:text-blue-800">
+                            <h3 class="text-xl font-bold text-blue-300">Gestion de vaccination canine – CNVZ</h3>
+                            <a href="https://github.com/hazemjday/VeterinaireSpring" target="_blank" class="text-blue-400 hover:text-blue-300 icon-animate">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Spring Boot</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">ESP32</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">IoT</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Spring Boot</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">ESP32</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">IoT</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
+                        <p class="text-gray-300">
                             Développement du backend d'une application pour le suivi annuel des vaccinations, avec intégration d'un collier intelligent (ESP32) pour l'identification des chiens et l'accès à leur historique vaccinal.
                         </p>
                     </div>
                 </div>
                 
                 <!-- Recruitment Platform -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300">
+                <div class="project-card rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-blue-800">Plateforme de recrutement</h3>
-                            <a href="https://github.com/hazemjday/FreeRtos_ESP32_Project" target="_blank" class="text-blue-600 hover:text-blue-800">
+                            <h3 class="text-xl font-bold text-blue-300">Plateforme de recrutement</h3>
+                            <a href="https://github.com/hazemjday/FreeRtos_ESP32_Project" target="_blank" class="text-blue-400 hover:text-blue-300 icon-animate">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                         <div class="mb-4">
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Elasticsearch</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">OCR</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">React</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Flask</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Elasticsearch</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">OCR</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">React</span>
+                                <span class="px-3 py-1 skill-tag rounded-full text-sm font-medium">Flask</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
+                        <p class="text-gray-300">
                             Développement d'une plateforme de matching automatisé candidats/offres avec scoring Elasticsearch et extraction des CV via OCR.
                         </p>
                     </div>
@@ -396,24 +538,24 @@
 
         <!-- Associations Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 section-title">Engagement Associatif</h2>
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-3xl font-bold mb-6 section-title">Engagement Associatif</h2>
+            <div class="project-card rounded-lg shadow-md p-6">
                 <div class="flex items-start mb-4">
-                    <div class="bg-blue-100 p-3 rounded-full mr-4">
-                        <i class="fas fa-users text-blue-800"></i>
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-3 rounded-full mr-4">
+                        <i class="fas fa-users text-white"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-1">JCI Sousse</h3>
-                        <p class="text-gray-700">Juin 2025 - Présent</p>
+                        <h3 class="text-xl font-bold text-blue-300 mb-1">JCI Sousse</h3>
+                        <p class="text-gray-300">Juin 2025 - Présent</p>
                     </div>
                 </div>
                 <div class="flex items-start">
-                    <div class="bg-blue-100 p-3 rounded-full mr-4">
-                        <i class="fas fa-robot text-blue-800"></i>
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-3 rounded-full mr-4">
+                        <i class="fas fa-robot text-white"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-1">Association robotique ENSI</h3>
-                        <p class="text-gray-700">Septembre 2022 - Mai 2023</p>
+                        <h3 class="text-xl font-bold text-blue-300 mb-1">Association robotique ENSI</h3>
+                        <p class="text-gray-300">Septembre 2022 - Mai 2023</p>
                     </div>
                 </div>
             </div>
@@ -421,33 +563,33 @@
     </main>
 
     <!-- Contact Section -->
-    <section class="bg-blue-900 text-white py-12 px-4 md:px-8 lg:px-16">
+    <section class="contact-gradient text-white py-12 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-8 text-center">Contactez-moi</h2>
             <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="flex items-center">
-                    <i class="fas fa-envelope text-2xl mr-4 text-blue-300"></i>
+                    <i class="fas fa-envelope text-2xl mr-4 text-blue-300 icon-animate"></i>
                     <div>
                         <h3 class="font-bold">Email</h3>
                         <a href="mailto:hazem.jday@ensi-uma.tn" class="hover:underline">hazem.jday@ensi-uma.tn</a>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <i class="fas fa-phone text-2xl mr-4 text-blue-300"></i>
+                    <i class="fas fa-phone text-2xl mr-4 text-blue-300 icon-animate"></i>
                     <div>
                         <h3 class="font-bold">Téléphone</h3>
                         <span>+216 55187295</span>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <i class="fab fa-linkedin-in text-2xl mr-4 text-blue-300"></i>
+                    <i class="fab fa-linkedin-in text-2xl mr-4 text-blue-300 icon-animate"></i>
                     <div>
                         <h3 class="font-bold">LinkedIn</h3>
                         <a href="https://www.linkedin.com/in/jday-hazem-80b72b18b/" target="_blank" class="hover:underline">Jday Hazem</a>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <i class="fab fa-github text-2xl mr-4 text-blue-300"></i>
+                    <i class="fab fa-github text-2xl mr-4 text-blue-300 icon-animate"></i>
                     <div>
                         <h3 class="font-bold">GitHub</h3>
                         <a href="https://github.com/hazemjday" target="_blank" class="hover:underline">hazemjday</a>
@@ -458,7 +600,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-blue-950 text-white py-6 px-4 text-center">
+    <footer class="bg-gray-900 text-white py-6 px-4 text-center">
         <p>&copy; 2024 Hazem Jday. Tous droits réservés.</p>
     </footer>
 
